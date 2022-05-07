@@ -1,5 +1,6 @@
 package com.won.board.controller;
 
+import com.won.board.result.Response;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -18,8 +19,8 @@ public class SampleController {
 
     @ApiOperation(value = "호출 테스트")
     @GetMapping("/test")
-    public String test() {
-        return "test";
+    public Response<?> test() {
+        return Response.of(200,"test");
     }
 
 }
