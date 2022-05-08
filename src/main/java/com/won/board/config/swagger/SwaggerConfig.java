@@ -11,6 +11,11 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.YearMonth;
+import java.util.Date;
+
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
@@ -23,7 +28,11 @@ public class SwaggerConfig {
                 .apis( RequestHandlerSelectors.withClassAnnotation(RestController.class)) //해당 어노테이션이 붙은 컨트롤러만 스와거에 표시
                 .paths(PathSelectors.any())
                 .build()
-                .apiInfo(apiInfo());
+                .apiInfo(apiInfo())
+                .directModelSubstitute(Date.class, String.class)
+                .directModelSubstitute(LocalDate.class, String.class)
+                .directModelSubstitute(LocalDateTime.class, String.class)
+                .directModelSubstitute(YearMonth.class, String.class);
     }
 
     private ApiInfo apiInfo() {
