@@ -73,7 +73,7 @@ public class ExceptionController {
 
 		String msg = "code="+errorCode+", param="+paramName+", type="+paramType+", inputValue="+inputValue;
 
-		logger.debug(ex.getMessage());
+		logger.error(ex.getMessage());
 		logger.debug(msg);
 
 		return Response.of(400, msg);
@@ -94,7 +94,7 @@ public class ExceptionController {
 	@ExceptionHandler({HttpMediaTypeNotSupportedException.class})
 	public Response<?> httpMediaTypeNotSupportedExceptionHandler(HttpMediaTypeNotSupportedException ex) {
 
-		logger.debug(ex.getMessage());
+		logger.error(ex.getMessage());
 
 		return Response.of(400, ex.getMessage());
 	}
@@ -107,9 +107,9 @@ public class ExceptionController {
 	@ExceptionHandler({HttpMessageNotReadableException.class})
 	public Response<?> HttpMessageNotReadableExceptionHandler(HttpMessageNotReadableException ex) {
 
-		logger.debug(ex.getMessage());
+		logger.error(ex.getMessage());
 
-		return Response.of(400, ex.getMessage());
+		return Response.of(400, "잘못된 파라미터 입니다.");
 	}
 
 	/**
@@ -119,7 +119,7 @@ public class ExceptionController {
 	@ExceptionHandler({MaxUploadSizeExceededException.class})
 	Response<?> MaxUploadSizeExceededExceptionHandler(MaxUploadSizeExceededException ex) {
 
-		logger.debug(ex.getMessage());
+		logger.error(ex.getMessage());
 
 		return Response.of(400, ex.getMessage());
 	}
@@ -131,7 +131,7 @@ public class ExceptionController {
 	@ExceptionHandler({MissingServletRequestPartException.class})
 	Response<?> MissingServletRequestPartExceptionHandler(MissingServletRequestPartException ex) {
 
-		logger.debug(ex.getMessage());
+		logger.error(ex.getMessage());
 
 		return Response.of(400, ex.getMessage());
 	}
@@ -143,7 +143,7 @@ public class ExceptionController {
 	@ExceptionHandler({MultipartException.class})
 	Response<?> MultipartExceptionHandler(MultipartException ex) {
 
-		logger.debug(ex.getMessage());
+		logger.error(ex.getMessage());
 
 		return Response.of(400, ex.getMessage());
 	}

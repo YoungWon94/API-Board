@@ -4,10 +4,12 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.PrePersist;
 import java.time.LocalDateTime;
 
 /**
@@ -18,16 +20,18 @@ import java.time.LocalDateTime;
 @Getter
 public abstract class BaseEntity {
 
-		@Setter
-		@Column(name="is_deleted", nullable=false, updatable = true)
-		private boolean isDeleted; // 삭제여부
+	@Setter
+	@Column(name="is_deleted", nullable=false, updatable = true)
+	private boolean isDeleted; // 삭제여부
 
-		@Column(name="created_at", nullable=false, updatable = false)
-		private LocalDateTime createdAt; // 추가시간
+	@CreationTimestamp
+	@Column(name="created_at", nullable=false, updatable = false)
+	private LocalDateTime createdAt; // 추가시간
 
-		@Setter
-		@UpdateTimestamp
-		@Column(name="updated_at", nullable=true, updatable = true, insertable = false)
-		private LocalDateTime updatedAt; // 수정시간
+	@Setter
+	@UpdateTimestamp
+	@Column(name="updated_at", nullable=true, updatable = true, insertable = false)
+	private LocalDateTime updatedAt; // 수정시간
+
 
 }
