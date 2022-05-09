@@ -11,7 +11,8 @@ public enum ErrorCode {
 	,NOT_ALLOW_STATUS("E0002", "허가되지 않은 상태입니다.", "", "")
 	,INVALID_RESOURCE("E0003", "유효하지 않은 리소스입니다.", "", "")
 	,PERMISSION_DENIED("E0004", "권한이 없습니다.", "", "")
-	, ALREADY_USE_IN_ID("E0005", "이미 사용중인 ID 입니다.", "", "")
+	,ALREADY_USE_IN_ID("E0005", "이미 사용중인 ID 입니다.", "", "")
+	,NOT_FOUND_MEMBER("E0006", "존재하지 않는 회원입니다.", "", "")
 	;
 
 

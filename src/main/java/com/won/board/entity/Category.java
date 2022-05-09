@@ -1,9 +1,6 @@
 package com.won.board.entity;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -17,13 +14,28 @@ public class Category extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "t_category_category_no_seq")
     @Column(name = "category_no", nullable = false)
-    private Long id;
+    private Long categoryNo;
 
     @Column(name = "name", nullable = false)
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "member_no", nullable = false)
-    private Member memberNo;
+    private Member member;
+
+    //===== 연관관계 메서드 =====//
+
+    public void setMember(@NonNull Member member) {
+        this.member = member;
+    }
+
+    //===== 생성 메서드 =====//
+
+    public static Category of(@NonNull String name, @NonNull Member member) {
+        Category category = new Category();
+        category.setName(name);
+        category.setMember(member);
+        return category;
+    }
 
 }

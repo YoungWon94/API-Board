@@ -10,4 +10,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
 
     boolean existsById(String id);
+
+    @Query("select m from Member m where m.id = :id")
+    Optional<Member> findByMemberId(String id);
 }
