@@ -1,6 +1,7 @@
 package com.won.board.facade;
 
 import com.won.board.controller.vo.category.CreateCategoryParam;
+import com.won.board.controller.vo.category.FindAllCategoryResult;
 import com.won.board.entity.Category;
 import com.won.board.entity.Member;
 import com.won.board.entity.RoleType;
@@ -13,6 +14,9 @@ import com.won.board.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @Transactional(rollbackFor = Exception.class)
@@ -39,5 +43,20 @@ public class CategoryFacade {
         /* 카테고리 생성 */
         Category category = Category.of(param.getName(), member);
         categoryRepository.save(category);
+    }
+
+    /**
+     * 전체 카테고리 조회
+     */
+    public FindAllCategoryResult findAllCategory() {
+
+        /* 모든 카테고리 조회 */
+        List<Category> categoryList = categoryRepository.findAll();
+
+        /* 결과 반환 */
+        List<FindAllCategoryResult.CategoryDto> categoryDtoList = categoryList.stream()
+                .map(FindAllCategoryResult.CategoryDto::new)
+                .collect(Collectors.toList());
+        return FindAllCategoryResult.from(categoryDtoList);
     }
 }

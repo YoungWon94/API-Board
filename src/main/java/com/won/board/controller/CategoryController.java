@@ -1,6 +1,7 @@
 package com.won.board.controller;
 
 import com.won.board.controller.vo.category.CreateCategoryParam;
+import com.won.board.controller.vo.category.FindAllCategoryResult;
 import com.won.board.controller.vo.member.RegisterMemberParam;
 import com.won.board.exception.CommonException;
 import com.won.board.facade.CategoryFacade;
@@ -29,6 +30,14 @@ public class CategoryController {
             ) throws CommonException {
         categoryFacade.createCategory(param);
         return Response.from(200);
+    }
+
+    @ApiOperation(value = "전체 카테고리 조회")
+    @GetMapping("")
+    public Response<FindAllCategoryResult> findAllCategory(
+    ) throws CommonException {
+        FindAllCategoryResult result = categoryFacade.findAllCategory();
+        return Response.from(result);
     }
 
 }
