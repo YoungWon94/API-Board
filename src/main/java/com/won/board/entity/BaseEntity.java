@@ -25,13 +25,13 @@ public abstract class BaseEntity {
 	private boolean isDeleted; // 삭제여부
 
 	@CreationTimestamp
-	@Column(name="created_at", nullable=false, updatable = false)
-	private LocalDateTime createdAt; // 추가시간
+	@Column(name="created_timestamp", nullable=false, updatable = false)
+	private LocalDateTime createdTimestamp; // 추가시간
 
 	@Setter
 	@UpdateTimestamp
-	@Column(name="updated_at", nullable=true, updatable = true, insertable = false)
-	private LocalDateTime updatedAt; // 수정시간
+	@Column(name="updated_timestamp", nullable=true, updatable = true, insertable = false)
+	private LocalDateTime updatedTimestamp; // 수정시간
 
 
 }

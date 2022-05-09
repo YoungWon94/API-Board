@@ -2,6 +2,7 @@ package com.won.board.facade;
 
 import com.won.board.controller.vo.member.RegisterMemberParam;
 import com.won.board.entity.Member;
+import com.won.board.entity.RoleType;
 import com.won.board.exception.AlreadyInUseIdException;
 import com.won.board.exception.NotFoundException;
 import com.won.board.repository.MemberRepository;
@@ -37,6 +38,7 @@ public class MemberFacade {
                 .phoneNumber(param.getPhoneNumber())
                 .email(param.getEmail())
                 .birthday(param.getBirthday())
+                .roleType(RoleType.USER)
                 .build();
 
         memberRepository.save(member);

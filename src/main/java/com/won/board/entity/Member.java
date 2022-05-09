@@ -37,6 +37,10 @@ public class Member extends BaseEntity {
     @Column(name = "birthday", nullable = false)
     private LocalDate birthday; //생년월일
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role_type", nullable = false)
+    private RoleType roleType;
+
     //===== 생성 메서드 =====//
 
     @Builder
@@ -46,7 +50,8 @@ public class Member extends BaseEntity {
             @NonNull String name,
             @NonNull String phoneNumber,
             String email,
-            @NonNull LocalDate birthday
+            @NonNull LocalDate birthday,
+            @NonNull RoleType roleType
     ) {
         Member member = new Member();
         member.setId(id);
@@ -55,6 +60,7 @@ public class Member extends BaseEntity {
         member.setPhoneNumber(phoneNumber);
         member.setEmail(email);
         member.setBirthday(birthday);
+        member.setRoleType(roleType);
         return member;
     }
 
