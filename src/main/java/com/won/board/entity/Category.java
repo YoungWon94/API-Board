@@ -38,4 +38,10 @@ public class Category extends BaseEntity {
         return category;
     }
 
+    //===== 비즈니스 메서드 =====//
+
+    public void rename(@NonNull String name) {
+        this.name = name;
+    }
+
 }
