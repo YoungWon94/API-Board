@@ -1,11 +1,12 @@
 package com.won.board.entity;
 
 import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity
+@Entity @DynamicUpdate
 @Table(name = "t_member", schema = "board", uniqueConstraints = {
         @UniqueConstraint(name = "t_member_un", columnNames = {"id"})
 })

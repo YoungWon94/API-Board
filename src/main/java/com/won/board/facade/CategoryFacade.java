@@ -2,7 +2,7 @@ package com.won.board.facade;
 
 import com.won.board.controller.vo.category.CreateCategoryParam;
 import com.won.board.controller.vo.category.FindAllCategoryResult;
-import com.won.board.controller.vo.category.RenameCategoryParam;
+import com.won.board.controller.vo.category.ModifyCategoryParam;
 import com.won.board.entity.Category;
 import com.won.board.entity.Member;
 import com.won.board.entity.RoleType;
@@ -61,12 +61,12 @@ public class CategoryFacade {
     }
 
     /**
-     * 카테고리 이름변경
+     * 카테고리 수정
      *
      * @param categoryNo 카테고리번호
      * @param param 파라미터
      */
-    public void renameCategory(long categoryNo, RenameCategoryParam param) throws CommonException {
+    public void modifyCategory(long categoryNo, ModifyCategoryParam param) throws CommonException {
 
         /* 관리자 권한 체크 */
         Member member = memberRepository.findByMemberId(param.getMemberId())
@@ -79,7 +79,8 @@ public class CategoryFacade {
         Category category = categoryRepository.findById(categoryNo)
                 .orElseThrow(() -> new NotFoundException(400, "존재하지 않는 카테고리입니다."));
 
-        /* 카테고리 이름변경 */
+        /* 카테고리 수정 */
         category.rename(param.getName());
+        category.changeUsed(param.getIsUsed());
     }
 }

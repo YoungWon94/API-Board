@@ -1,10 +1,11 @@
 package com.won.board.entity;
 
 import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
-@Entity
+@Entity @DynamicUpdate
 @Table(name = "t_category", schema = "board")
 @SequenceGenerator(name = "t_category_category_no_seq", initialValue = 1, allocationSize = 1)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -23,6 +24,9 @@ public class Category extends BaseEntity {
     @JoinColumn(name = "member_no", nullable = false)
     private Member member;
 
+    @Column(name = "is_used", nullable = false)
+    private boolean isUsed;
+
     //===== 연관관계 메서드 =====//
 
     public void setMember(@NonNull Member member) {
@@ -35,6 +39,7 @@ public class Category extends BaseEntity {
         Category category = new Category();
         category.setName(name);
         category.setMember(member);
+        category.setUsed(true);
         return category;
     }
 
@@ -42,6 +47,10 @@ public class Category extends BaseEntity {
 
     public void rename(@NonNull String name) {
         this.name = name;
+    }
+
+    public void changeUsed(boolean isUsed) {
+        this.isUsed = isUsed;
     }
 
 }

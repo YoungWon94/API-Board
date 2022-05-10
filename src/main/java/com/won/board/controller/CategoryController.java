@@ -2,11 +2,9 @@ package com.won.board.controller;
 
 import com.won.board.controller.vo.category.CreateCategoryParam;
 import com.won.board.controller.vo.category.FindAllCategoryResult;
-import com.won.board.controller.vo.category.RenameCategoryParam;
-import com.won.board.controller.vo.member.RegisterMemberParam;
+import com.won.board.controller.vo.category.ModifyCategoryParam;
 import com.won.board.exception.CommonException;
 import com.won.board.facade.CategoryFacade;
-import com.won.board.facade.MemberFacade;
 import com.won.board.result.Response;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -43,15 +41,16 @@ public class CategoryController {
         return Response.from(result);
     }
 
-    @ApiOperation(value = "카테고리 이름 변경")
-    @PutMapping("/rename/{categoryNo}")
-    public Response<?> renameCategory(
+    @ApiOperation(value = "카테고리 수정")
+    @PutMapping("/{categoryNo}")
+    public Response<?> modifyCategory(
             @PathVariable @Valid @NotNull @Positive Long categoryNo,
-            @RequestBody @Valid RenameCategoryParam param
+            @RequestBody @Valid ModifyCategoryParam param
             ) throws CommonException {
-        categoryFacade.renameCategory(categoryNo, param);
+        categoryFacade.modifyCategory(categoryNo, param);
         return Response.from(200);
     }
+
 
 }
 
