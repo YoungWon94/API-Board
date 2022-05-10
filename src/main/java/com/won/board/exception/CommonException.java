@@ -59,4 +59,16 @@ public class CommonException extends Exception {
 		return Optional.ofNullable(response).orElseThrow(()->new NullPointerException("response is null"));
 	}
 
+	/**
+	 * 에러 reusltData 셋팅
+	 */
+	protected void setErrorData(@NonNull ErrorCode errorCode) {
+		HashMap<String, Object> resultData = new HashMap<>();
+		resultData.put("errorCode", errorCode.getCode());
+		resultData.put("errorMessage", errorCode.getMessage());
+		response = response == null
+				? Response.of(999, errorCode.getMessage(), resultData)
+				: Response.of(response.getResultCode(), response.getResultMsg(), resultData);
+	}
+
 }

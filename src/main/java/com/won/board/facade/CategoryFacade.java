@@ -7,7 +7,6 @@ import com.won.board.entity.Member;
 import com.won.board.entity.RoleType;
 import com.won.board.exception.CommonException;
 import com.won.board.exception.NotFoundException;
-import com.won.board.exception.NotFoundMemberException;
 import com.won.board.exception.PermissionDeniedException;
 import com.won.board.repository.CategoryRepository;
 import com.won.board.repository.MemberRepository;
@@ -35,7 +34,7 @@ public class CategoryFacade {
 
         /* 관리자 권한 체크 */
         Member member = memberRepository.findByMemberId(param.getMemberId())
-                .orElseThrow(NotFoundMemberException::new);
+                .orElseThrow(() -> new NotFoundException(400, "존재하지 않는 회원입니다."));
         if(!RoleType.ADMIN.equals(member.getRoleType())) {
             throw new PermissionDeniedException();
         }

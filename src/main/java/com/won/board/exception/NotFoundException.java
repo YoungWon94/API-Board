@@ -12,4 +12,11 @@ public class NotFoundException extends CommonException {
     public NotFoundException() {
         super(400, errorCode);
     }
+
+    public NotFoundException(int code, String message) {
+        super(400, message);
+        super.setErrorData(errorCode);
+    }
+
+
 }
