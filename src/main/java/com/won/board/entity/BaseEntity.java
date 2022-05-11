@@ -9,6 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.PrePersist;
 import java.time.LocalDateTime;
 
 /**
@@ -32,5 +33,10 @@ public abstract class BaseEntity {
 	@Column(name="updated_timestamp", nullable=true, updatable = true, insertable = false)
 	private LocalDateTime updatedTimestamp; // 수정시간
 
+
+	@PrePersist
+	public void prePersist() {
+		this.isDeleted = false;
+	}
 
 }

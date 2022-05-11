@@ -11,6 +11,6 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     boolean existsById(String id);
 
-    @Query("select m from Member m where m.id = :id")
+    @Query("select m from Member m where m.id = :id and m.isDeleted = false")
     Optional<Member> findByMemberId(String id);
 }

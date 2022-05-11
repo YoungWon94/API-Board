@@ -1,12 +1,10 @@
 package com.won.board.entity;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity @DynamicUpdate
@@ -37,5 +35,34 @@ public class Post extends BaseEntity  {
 
     @Column(name = "contents", nullable = false, length = 5100) @Size(min=2, max=5100)
     private String contents;
+
+    //===== 연관관계 메서드 =====//
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
+
+
+    //===== 생성 메서드 =====//
+
+    public static Post of(
+            @NotNull Category category,
+            @NonNull Member member,
+            boolean isNotice,
+            @NonNull String title,
+            @NonNull String contents
+            ) {
+        Post post = new Post();
+        post.setCategory(category);
+        post.setMember(member);
+        post.setIsNotice(isNotice);
+        post.setTitle(title);
+        post.setContents(contents);
+        return post;
+    }
 
 }
