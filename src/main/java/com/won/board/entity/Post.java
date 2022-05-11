@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 @SequenceGenerator(name = "t_post_post_no_seq", initialValue = 1, allocationSize = 1)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter @Setter(AccessLevel.PRIVATE)
-public class Post {
+public class Post extends BaseEntity  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "t_post_post_no_seq")

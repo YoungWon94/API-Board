@@ -9,7 +9,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.PrePersist;
 import java.time.LocalDateTime;
 
 /**
@@ -22,7 +21,7 @@ public abstract class BaseEntity {
 
 	@Setter
 	@Column(name="is_deleted", nullable=false, updatable = true)
-	private boolean isDeleted; // 삭제여부
+	private Boolean isDeleted; // 삭제여부
 
 	@CreationTimestamp
 	@Column(name="created_timestamp", nullable=false, updatable = false)
