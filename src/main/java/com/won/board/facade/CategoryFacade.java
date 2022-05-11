@@ -81,6 +81,6 @@ public class CategoryFacade {
 
         /* 카테고리 수정 */
         category.rename(param.getName());
-        category.changeUsed(param.getIsUsed());
+        category.changeIsUsed(param.getIsUsed());
     }
 }

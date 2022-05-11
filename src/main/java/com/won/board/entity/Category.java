@@ -25,7 +25,7 @@ public class Category extends BaseEntity {
     private Member member;
 
     @Column(name = "is_used", nullable = false)
-    private boolean isUsed;
+    private Boolean isUsed = false;
 
     //===== 연관관계 메서드 =====//
 
@@ -39,7 +39,7 @@ public class Category extends BaseEntity {
         Category category = new Category();
         category.setName(name);
         category.setMember(member);
-        category.setUsed(true);
+        category.setIsUsed(true);
         return category;
     }
 
@@ -49,7 +49,7 @@ public class Category extends BaseEntity {
         this.name = name;
     }
 
-    public void changeUsed(boolean isUsed) {
+    public void changeIsUsed(boolean isUsed) {
         this.isUsed = isUsed;
     }
 
