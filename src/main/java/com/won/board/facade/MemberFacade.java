@@ -1,10 +1,9 @@
 package com.won.board.facade;
 
-import com.won.board.controller.vo.member.RegisterMemberParam;
+import com.won.board.controller.dto.member.RegisterMemberParam;
 import com.won.board.entity.Member;
 import com.won.board.entity.RoleType;
 import com.won.board.exception.AlreadyInUseIdException;
-import com.won.board.exception.NotFoundException;
 import com.won.board.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

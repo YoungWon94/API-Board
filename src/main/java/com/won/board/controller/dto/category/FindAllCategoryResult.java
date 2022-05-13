@@ -1,4 +1,4 @@
-package com.won.board.controller.vo.category;
+package com.won.board.controller.dto.category;
 
 import com.won.board.entity.Category;
 import io.swagger.annotations.ApiModel;

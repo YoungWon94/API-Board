@@ -1,9 +1,8 @@
-package com.won.board.controller.vo.post;
+package com.won.board.controller.dto.post;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
-import lombok.NonNull;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

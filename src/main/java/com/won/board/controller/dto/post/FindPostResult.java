@@ -1,4 +1,4 @@
-package com.won.board.controller.vo.post;
+package com.won.board.controller.dto.post;
 
 import com.won.board.entity.Post;
 import io.swagger.annotations.ApiModel;
@@ -6,9 +6,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 게시글 단건 조회 결과

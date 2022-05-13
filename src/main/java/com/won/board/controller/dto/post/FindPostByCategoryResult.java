@@ -1,4 +1,4 @@
-package com.won.board.controller.vo.post;
+package com.won.board.controller.dto.post;
 
 import com.won.board.entity.Post;
 import io.swagger.annotations.ApiModel;

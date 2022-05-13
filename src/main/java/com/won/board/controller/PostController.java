@@ -1,8 +1,8 @@
 package com.won.board.controller;
 
-import com.won.board.controller.vo.post.CreatePostParam;
-import com.won.board.controller.vo.post.FindPostByCategoryResult;
-import com.won.board.controller.vo.post.FindPostResult;
+import com.won.board.controller.dto.post.CreatePostParam;
+import com.won.board.controller.dto.post.FindPostByCategoryResult;
+import com.won.board.controller.dto.post.FindPostResult;
 import com.won.board.exception.CommonException;
 import com.won.board.facade.PostFacade;
 import com.won.board.result.Response;

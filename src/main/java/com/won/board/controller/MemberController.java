@@ -1,6 +1,6 @@
 package com.won.board.controller;
 
-import com.won.board.controller.vo.member.RegisterMemberParam;
+import com.won.board.controller.dto.member.RegisterMemberParam;
 import com.won.board.exception.CommonException;
 import com.won.board.facade.MemberFacade;
 import com.won.board.result.Response;

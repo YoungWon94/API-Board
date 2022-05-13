@@ -1,4 +1,4 @@
-package com.won.board.controller.vo.member;
+package com.won.board.controller.dto.member;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

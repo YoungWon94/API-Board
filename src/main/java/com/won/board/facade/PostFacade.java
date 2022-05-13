@@ -1,9 +1,9 @@
 package com.won.board.facade;
 
 
-import com.won.board.controller.vo.post.CreatePostParam;
-import com.won.board.controller.vo.post.FindPostByCategoryResult;
-import com.won.board.controller.vo.post.FindPostResult;
+import com.won.board.controller.dto.post.CreatePostParam;
+import com.won.board.controller.dto.post.FindPostByCategoryResult;
+import com.won.board.controller.dto.post.FindPostResult;
 import com.won.board.entity.Category;
 import com.won.board.entity.Member;
 import com.won.board.entity.Post;

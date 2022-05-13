@@ -1,8 +1,8 @@
 package com.won.board.facade;
 
-import com.won.board.controller.vo.category.CreateCategoryParam;
-import com.won.board.controller.vo.category.FindAllCategoryResult;
-import com.won.board.controller.vo.category.ModifyCategoryParam;
+import com.won.board.controller.dto.category.CreateCategoryParam;
+import com.won.board.controller.dto.category.FindAllCategoryResult;
+import com.won.board.controller.dto.category.ModifyCategoryParam;
 import com.won.board.entity.Category;
 import com.won.board.entity.Member;
 import com.won.board.entity.RoleType;

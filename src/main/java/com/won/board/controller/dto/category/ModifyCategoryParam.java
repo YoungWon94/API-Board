@@ -1,16 +1,16 @@
-package com.won.board.controller.vo.category;
+package com.won.board.controller.dto.category;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.*;
-import java.time.LocalDate;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-@ApiModel("카테고리 생성 파라미터")
+@ApiModel("카테고리 수정 파라미터")
 @Getter
-public class CreateCategoryParam {
+public class ModifyCategoryParam {
 
     @ApiModelProperty(required = true, name = "회원ID", position = 10)
     @NotBlank @Size(min = 5, max = 20)
@@ -19,5 +19,9 @@ public class CreateCategoryParam {
     @ApiModelProperty(required = true, name = "카테고리명", position = 20)
     @NotBlank @Size(min = 2, max = 20)
     private String name;
+
+    @ApiModelProperty(required = true, name = "사용여부", position = 30)
+    @NotNull
+    private Boolean isUsed;
 
 }

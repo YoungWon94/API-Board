@@ -1,8 +1,8 @@
 package com.won.board.controller;
 
-import com.won.board.controller.vo.category.CreateCategoryParam;
-import com.won.board.controller.vo.category.FindAllCategoryResult;
-import com.won.board.controller.vo.category.ModifyCategoryParam;
+import com.won.board.controller.dto.category.CreateCategoryParam;
+import com.won.board.controller.dto.category.FindAllCategoryResult;
+import com.won.board.controller.dto.category.ModifyCategoryParam;
 import com.won.board.exception.CommonException;
 import com.won.board.facade.CategoryFacade;
 import com.won.board.result.Response;
