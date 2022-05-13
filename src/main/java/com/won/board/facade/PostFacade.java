@@ -3,6 +3,7 @@ package com.won.board.facade;
 
 import com.won.board.controller.vo.post.CreatePostParam;
 import com.won.board.controller.vo.post.FindPostByCategoryResult;
+import com.won.board.controller.vo.post.FindPostResult;
 import com.won.board.entity.Category;
 import com.won.board.entity.Member;
 import com.won.board.entity.Post;
@@ -64,5 +65,20 @@ public class PostFacade {
                 .collect(Collectors.toList());
 
         return FindPostByCategoryResult.from(postDtoList);
+   }
+
+    /**
+     * 게시글 단건 조회
+     *
+     * @param postNo 게시글번호
+     */
+    public FindPostResult findPost(long postNo) throws NotFoundException {
+
+        /* 게시글 조회 */
+        Post post = postRepository.findById(postNo)
+                .orElseThrow(() -> new NotFoundException(400, "존재하지 않는 게시글입니다."));
+
+        /* 결과 반환 */
+        return FindPostResult.from(post);
     }
 }

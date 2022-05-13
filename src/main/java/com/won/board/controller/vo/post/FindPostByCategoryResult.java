@@ -1,18 +1,12 @@
 package com.won.board.controller.vo.post;
 
-import com.won.board.entity.Category;
-import com.won.board.entity.Member;
 import com.won.board.entity.Post;
-import com.won.board.entity.RoleType;
 import io.swagger.annotations.ApiModel;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 
-import javax.persistence.*;
-import javax.validation.constraints.Size;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +14,7 @@ import java.util.List;
  * 카테고리 게시글 목록 조회 결과
  */
 @ApiModel("카테고리 게시글 조회 결과")
-@Getter
-@Setter(AccessLevel.PRIVATE)
+@Getter @Setter(AccessLevel.PRIVATE)
 public class FindPostByCategoryResult {
 
     private List<PostDto> postList;
@@ -50,8 +43,8 @@ public class FindPostByCategoryResult {
     @Getter
     public static class PostDto {
 
-        private long postNo; //게시글 번호
-        private boolean isNotice;
+        private Long postNo; //게시글 번호
+        private Boolean isNotice;
         private String title;
         private WriterMemberDto writerMember;
 
@@ -62,23 +55,5 @@ public class FindPostByCategoryResult {
             this.writerMember = new WriterMemberDto(post.getMember());
         }
     }
-
-    @ApiModel("카테고리게시글>작성자정보")
-    @Getter
-    public static class WriterMemberDto {
-
-        private Long memberNo;
-        private String id; //회원Id
-        private String name; //이름
-        private String roleType;
-
-        public WriterMemberDto(@NonNull Member member) {
-            this.memberNo = member.getMemberNo();
-            this.id = member.getId();
-            this.name = member.getName();
-            this.roleType = member.getRoleType().name();
-        }
-    }
-
 
 }

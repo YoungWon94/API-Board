@@ -1,12 +1,9 @@
 package com.won.board.controller;
 
-import com.won.board.controller.vo.category.CreateCategoryParam;
-import com.won.board.controller.vo.category.FindAllCategoryResult;
-import com.won.board.controller.vo.category.ModifyCategoryParam;
 import com.won.board.controller.vo.post.CreatePostParam;
 import com.won.board.controller.vo.post.FindPostByCategoryResult;
+import com.won.board.controller.vo.post.FindPostResult;
 import com.won.board.exception.CommonException;
-import com.won.board.facade.CategoryFacade;
 import com.won.board.facade.PostFacade;
 import com.won.board.result.Response;
 import io.swagger.annotations.Api;
@@ -42,6 +39,15 @@ public class PostController {
             @PathVariable @Valid @NotNull @Positive Long categoryNo
     ) throws CommonException {
         FindPostByCategoryResult result =  postFacade.findPostByCategory(categoryNo);
+        return Response.from(result);
+    }
+
+    @ApiOperation(value = "게시글 단건 조회")
+    @GetMapping("/post/{postNo}")
+    public Response<FindPostResult> findPost(
+            @PathVariable @Valid @NotNull @Positive Long postNo
+    ) throws CommonException {
+        FindPostResult result =  postFacade.findPost(postNo);
         return Response.from(result);
     }
 
