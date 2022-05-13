@@ -1,9 +1,6 @@
 package com.won.board.controller;
 
-import com.won.board.controller.dto.post.CreatePostParam;
-import com.won.board.controller.dto.post.FindPostByCategoryResult;
-import com.won.board.controller.dto.post.FindPostResult;
-import com.won.board.controller.dto.post.ModifyPostParam;
+import com.won.board.controller.dto.post.*;
 import com.won.board.exception.CommonException;
 import com.won.board.facade.PostFacade;
 import com.won.board.result.Response;
@@ -59,6 +56,16 @@ public class PostController {
             @RequestBody @Valid ModifyPostParam param
     ) throws CommonException {
         postFacade.modifyPost(postNo, param);
+        return Response.from(200);
+    }
+
+    @ApiOperation(value = "게시글 단건 삭제")
+    @DeleteMapping("/post/{postNo}")
+    public Response<?> deletePost(
+            @PathVariable @Valid @NotNull @Positive Long postNo,
+            @ModelAttribute @Valid DeletePostParam param
+            ) throws CommonException {
+        postFacade.deletePost(postNo, param);
         return Response.from(200);
     }
 

@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 @Getter
 public abstract class BaseEntity {
 
-	@Setter
+	@Setter(AccessLevel.PROTECTED)
 	@Column(name="is_deleted", nullable=false, updatable = true)
 	private Boolean isDeleted; // 삭제여부
 
@@ -28,7 +28,6 @@ public abstract class BaseEntity {
 	@Column(name="created_timestamp", nullable=false, updatable = false)
 	private LocalDateTime createdTimestamp; // 추가시간
 
-	@Setter
 	@UpdateTimestamp
 	@Column(name="updated_timestamp", nullable=true, updatable = true, insertable = false)
 	private LocalDateTime updatedTimestamp; // 수정시간

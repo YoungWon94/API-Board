@@ -1,10 +1,7 @@
 package com.won.board.facade;
 
 
-import com.won.board.controller.dto.post.CreatePostParam;
-import com.won.board.controller.dto.post.FindPostByCategoryResult;
-import com.won.board.controller.dto.post.FindPostResult;
-import com.won.board.controller.dto.post.ModifyPostParam;
+import com.won.board.controller.dto.post.*;
 import com.won.board.entity.Category;
 import com.won.board.entity.Member;
 import com.won.board.entity.Post;
@@ -19,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -79,7 +77,7 @@ public class PostFacade {
     public FindPostResult findPost(long postNo) throws NotFoundException {
 
         /* 게시글 조회 */
-        Post post = postRepository.findById(postNo)
+        Post post = postRepository.findByPostNo(postNo)
                 .orElseThrow(() -> new NotFoundException(400, "존재하지 않는 게시글입니다."));
 
         /* 결과 반환 */
@@ -95,7 +93,7 @@ public class PostFacade {
     public void modifyPost(long postNo, @NonNull ModifyPostParam param) throws CommonException {
 
         /* 게시글 조회 */
-        Post post = postRepository.findById(postNo)
+        Post post = postRepository.findByPostNo(postNo)
                 .orElseThrow(() -> new NotFoundException(400, "존재하지 않는 게시글입니다."));
 
         /* 회원정보 조회 */
@@ -119,6 +117,32 @@ public class PostFacade {
         //제목,내용 수정
         post.changetitle(param.getTitle());
         post.changeContents(param.getContents());
+
+    }
+
+    /**
+     * 게시글 단건 삭제
+     *
+     * @param postNo 게시글 번호
+     */
+    public void deletePost(long postNo, @NonNull DeletePostParam param) throws CommonException {
+
+        /* 게시글 조회 */
+        Post post = postRepository.findByPostNo(postNo)
+                .orElseThrow(() -> new NotFoundException(400, "존재하지 않는 게시글입니다."));
+
+        /* 회원정보 조회 */
+        Member member = memberRepository.findByMemberId(param.getMemberId())
+                .orElseThrow(() -> new NotFoundException(400, "존재하지 않는 회원입니다."));
+
+        /* 작성자 체크 */
+        if(!member.equals(post.getMember())) {
+            throw new PermissionDeniedException();
+        }
+
+        /* 게시글 삭제 처리 */
+        int cnt = postRepository.deleteByPostNo(postNo);
+        System.out.println("count ::  " + cnt);
 
     }
 }
