@@ -2,6 +2,7 @@ package com.won.board.controller.dto.post;
 
 import com.won.board.entity.Post;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
@@ -17,6 +18,7 @@ import java.util.List;
 @Getter @Setter(AccessLevel.PRIVATE)
 public class FindPostByCategoryResult {
 
+    @ApiModelProperty(required = true, value = "게시글 목록", position = 10)
     private List<PostDto> postList;
 
 
@@ -43,9 +45,16 @@ public class FindPostByCategoryResult {
     @Getter
     public static class PostDto {
 
+        @ApiModelProperty(required = true, value = "게시글 번호", position = 10)
         private Long postNo; //게시글 번호
+
+        @ApiModelProperty(required = true, value = "공지글 여부", position = 20)
         private Boolean isNotice;
+
+        @ApiModelProperty(required = true, value = "게시글 제목", position = 30)
         private String title;
+
+        @ApiModelProperty(required = true, value = "게시글 작성자", position = 40)
         private WriterMemberDto writerMember;
 
         public PostDto(@NonNull Post post) {

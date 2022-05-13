@@ -17,7 +17,7 @@ import java.util.List;
 @Getter @Setter(AccessLevel.PRIVATE)
 public class FindAllCategoryResult {
 
-    @ApiModelProperty(required = true, name = "카테고리 목록", position = 10)
+    @ApiModelProperty(required = true, value = "카테고리 목록", position = 10)
     private List<CategoryDto> categoryList;
 
     //===== 생성 메서드 =====//
@@ -38,7 +38,10 @@ public class FindAllCategoryResult {
     @Getter
     public static class CategoryDto {
 
+        @ApiModelProperty(required = true, value = "카테고리 번호", position = 10)
         private long categoryNo;
+
+        @ApiModelProperty(required = true, value = "카테고리명", position = 20)
         private String name;
 
         public CategoryDto(@NonNull Category category) {
