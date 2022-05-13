@@ -3,6 +3,7 @@ package com.won.board.controller;
 import com.won.board.controller.dto.post.CreatePostParam;
 import com.won.board.controller.dto.post.FindPostByCategoryResult;
 import com.won.board.controller.dto.post.FindPostResult;
+import com.won.board.controller.dto.post.ModifyPostParam;
 import com.won.board.exception.CommonException;
 import com.won.board.facade.PostFacade;
 import com.won.board.result.Response;
@@ -49,6 +50,16 @@ public class PostController {
     ) throws CommonException {
         FindPostResult result =  postFacade.findPost(postNo);
         return Response.from(result);
+    }
+
+    @ApiOperation(value = "게시글 단건 수정")
+    @PutMapping("/post/{postNo}")
+    public Response<?> modifyPost(
+            @PathVariable @Valid @NotNull @Positive Long postNo,
+            @RequestBody @Valid ModifyPostParam param
+    ) throws CommonException {
+        postFacade.modifyPost(postNo, param);
+        return Response.from(200);
     }
 
 

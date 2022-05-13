@@ -65,4 +65,20 @@ public class Post extends BaseEntity  {
         return post;
     }
 
+    //===== 비즈니스 메서드 =====//
+
+    /**
+     * 게시글 제목 변경
+     */
+    public void changetitle(@NonNull String title) {
+        setTitle(title);
+    }
+
+    /**
+     * 게시글 내용 변경
+     */
+    public void changeContents(@NonNull String contents) {
+        setContents(contents);
+    }
+
 }
