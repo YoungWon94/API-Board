@@ -3,6 +3,7 @@ package com.won.board.facade;
 
 import com.won.board.controller.dto.post.*;
 import com.won.board.entity.Category;
+import com.won.board.entity.Comment;
 import com.won.board.entity.Member;
 import com.won.board.entity.Post;
 import com.won.board.exception.CommonException;
@@ -80,8 +81,14 @@ public class PostFacade {
         Post post = postRepository.findByPostNo(postNo)
                 .orElseThrow(() -> new NotFoundException(400, "존재하지 않는 게시글입니다."));
 
+        /* 댓글 조회 */
+        List<Comment> commentList = post.getCommentList();
+
         /* 결과 반환 */
-        return FindPostResult.from(post);
+        List<FindPostResult.CommentDto> commentDtoList = commentList.stream()
+                .map(FindPostResult.CommentDto::new)
+                .collect(Collectors.toList());
+        return FindPostResult.of(post, commentDtoList);
     }
 
     /**
