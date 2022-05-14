@@ -44,8 +44,17 @@ public class Comment extends BaseEntity {
         this.parentComment = parentComment;
     }
 
+    protected void clearPost() {
+        if(this.post != null) {
+            this.post.getCommentList().remove(this);
+            this.post = null;
+        }
+    }
+
     public void setPost(Post post) {
+        clearPost();
         this.post = post;
+        this.post.getCommentList().add(this);
     }
 
     //===== 생성 메서드 =====//

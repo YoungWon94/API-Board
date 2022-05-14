@@ -6,6 +6,8 @@ import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity @DynamicUpdate
 @Table(name = "t_post", schema = "board")
@@ -35,6 +37,9 @@ public class Post extends BaseEntity  {
 
     @Column(name = "contents", nullable = false, length = 5100) @Size(min=2, max=5100)
     private String contents;
+
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Comment> commentList = new ArrayList<>();
 
     //===== 연관관계 메서드 =====//
 
