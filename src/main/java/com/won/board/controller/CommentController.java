@@ -1,6 +1,7 @@
 package com.won.board.controller;
 
 import com.won.board.controller.dto.comment.CreateCommentParam;
+import com.won.board.controller.dto.comment.ModifyCommentParam;
 import com.won.board.controller.dto.post.*;
 import com.won.board.exception.CommonException;
 import com.won.board.facade.CommentFacade;
@@ -33,6 +34,15 @@ public class CommentController {
         return Response.from(200);
     }
 
+    @ApiOperation(value = "댓글 수정")
+    @PutMapping("/comment/{commentNo}")
+    public Response<?> modifyComment(
+            @PathVariable @Valid @NotNull @Positive Long commentNo,
+            @RequestBody @Valid ModifyCommentParam param
+    ) throws CommonException {
+        commentFacade.modifyComment(commentNo, param);
+        return Response.from(200);
+    }
 
 
 
