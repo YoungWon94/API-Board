@@ -14,4 +14,10 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     @Query("select c from Comment c where c.commentNo = :commentNo and c.isDeleted = false")
     Optional<Comment> findByCommentNo(long commentNo);
+
+
+    @Modifying(flushAutomatically = true, clearAutomatically = true)
+    @Query("update Comment c set c.isDeleted = true where c.commentNo = :commentNo and c.isDeleted = false")
+    int deleteByCommentNo(long commentNo);
+
 }

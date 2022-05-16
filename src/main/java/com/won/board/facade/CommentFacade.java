@@ -2,6 +2,7 @@ package com.won.board.facade;
 
 
 import com.won.board.controller.dto.comment.CreateCommentParam;
+import com.won.board.controller.dto.comment.DeleteCommentParam;
 import com.won.board.controller.dto.comment.ModifyCommentParam;
 import com.won.board.entity.Comment;
 import com.won.board.entity.Member;
@@ -64,7 +65,6 @@ public class CommentFacade {
         Member member = memberRepository.findByMemberId(param.getMemberId())
                 .orElseThrow(() -> new NotFoundException(400, "존재하지 않는 회원입니다."));
 
-
         /* 댓글 조회 및 체크 */
         Comment comment = commentRepository.findByCommentNo(commentNo)
                 .orElseThrow(() -> new NotFoundException(400, "존재하지 않는 댓글 입니다."));
@@ -75,6 +75,31 @@ public class CommentFacade {
 
         /* 댓글 내용 수정 */
         comment.changeContents(param.getContents());
+
+    }
+
+    /**
+     * 댓글 삭제
+     *
+     * @param commentNo 댓글번호
+     * @param param 삭제 파라미터
+     */
+    public void deleteComment(long commentNo, @NonNull DeleteCommentParam param) throws CommonException {
+
+        /* 회원 조회 및 체크 */
+        Member member = memberRepository.findByMemberId(param.getMemberId())
+                .orElseThrow(() -> new NotFoundException(400, "존재하지 않는 회원입니다."));
+
+        /* 댓글 조회 및 체크 */
+        Comment comment = commentRepository.findByCommentNo(commentNo)
+                .orElseThrow(() -> new NotFoundException(400, "존재하지 않는 댓글 입니다."));
+
+        if(!comment.getMember().equals(member)) {
+            throw new PermissionDeniedException();
+        }
+
+        /* 댓글 삭제 */
+        commentRepository.deleteByCommentNo(commentNo);
 
     }
 }

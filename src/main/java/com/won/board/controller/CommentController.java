@@ -1,6 +1,7 @@
 package com.won.board.controller;
 
 import com.won.board.controller.dto.comment.CreateCommentParam;
+import com.won.board.controller.dto.comment.DeleteCommentParam;
 import com.won.board.controller.dto.comment.ModifyCommentParam;
 import com.won.board.controller.dto.post.*;
 import com.won.board.exception.CommonException;
@@ -41,6 +42,16 @@ public class CommentController {
             @RequestBody @Valid ModifyCommentParam param
     ) throws CommonException {
         commentFacade.modifyComment(commentNo, param);
+        return Response.from(200);
+    }
+
+    @ApiOperation(value = "댓글 삭제")
+    @DeleteMapping("/comment/{commentNo}")
+    public Response<?> deleteComment(
+            @PathVariable @Valid @NotNull @Positive Long commentNo,
+            @ModelAttribute @Valid DeleteCommentParam param
+            ) throws CommonException {
+        commentFacade.deleteComment(commentNo, param);
         return Response.from(200);
     }
 
